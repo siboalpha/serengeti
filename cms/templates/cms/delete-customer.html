@@ -1,0 +1,17 @@
+{% extends 'cms/main.html' %}
+{% load static %}
+{%  block content %}
+<div class="container form-with">
+    <h3>Are you sure you want to delete {{customer.name}}?</h3>
+    <form action="{% url 'delete-customer' customer.id %}" method="POST">
+        {% csrf_token %}
+
+    <div class="form-group">
+        <a class="btn btn-success" href="{% url 'dashboard' %}"> Cancel</a>
+    </div>
+    <div class="form-group">
+        <input class="btn btn-danger" type="submit" name="Confirm">
+    </div>
+    </form>
+</div>
+{% endblock%}

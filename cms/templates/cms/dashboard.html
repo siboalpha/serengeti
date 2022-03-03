@@ -1,0 +1,44 @@
+{% extends 'cms/main.html' %}
+{% load static %}
+{%  block content %}
+
+<h1>Customers</h1>
+<br>
+<div class="topnav">
+  <div class="search-container">
+    <form action="{% url 'dashboard' %}">
+        {{customers_search.form}}
+      <button type="submit" class="btn btn-success" ><i> Search</i></button>
+    </form>
+  </div>
+</div>
+<br>
+<table id="customers">
+  <tr>
+    <th>Id</th>
+    <th>Name</th>
+    <th>Surname</th>
+    <th>Phone</th>
+    <th>Email</th>
+    <th>Address</th>
+    <th>Action</th>
+  </tr>
+
+  {%for customer in customers%}
+  <tr>
+    <td>{{customer.id}}</td>
+    <td>{{customer.name}}</td>
+    <td>{{customer.surname}}</td>
+    <td>{{customer.phone_number}}</td>
+    <td>{{customer.email}}</td>
+    <td>{{customer.address}}</td>
+    <td>
+      <a class="btn btn-secondary" href="{% url 'edit-customer' customer.id %}">Edit</a>
+      <a class="btn btn-danger" href="{% url 'delete-customer' customer.id %}">Delete</a>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+{%  endblock %}
+
+
