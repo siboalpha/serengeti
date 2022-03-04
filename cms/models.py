@@ -15,7 +15,7 @@ class Customers(models.Model):
         length=4,
         max_length=4,
         prefix="SE",
-        alphabet="ABCDEFGHJKLMNOPQRWSVXTUZY1234567890",
+        alphabet="0123456789",
         primary_key=True,
     )
 
