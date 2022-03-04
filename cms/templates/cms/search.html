@@ -1,0 +1,57 @@
+{% extends 'cms/main.html' %}
+{% load static %}
+{%  block content %}
+<h1>Search Page</h1>
+
+
+<br/>
+<div class="container">
+  <div class="row justify-content-md-center">
+    <div class="col-sm">
+      Search customers by id or name
+    <br/>
+      <form action="" method="GET" value="{{request.GET.q}}">
+      <input type="text" name="q" value="{{request.GET.q}}" placeholder="Search customers"/>
+      <input class="btn btn-success" type="submit" name="submit" value="Search"/>
+</form>
+    </div>
+  </div>
+</div>
+
+
+{% if submitbutton == 'Search' and request.GET.q != '' %}
+{% if results %}
+<h1>Results for <b>{{ request.GET.q }}</b></h1>
+<br/><br/>
+<table id="customers">
+  <tr>
+    <th>Id</th>
+    <th>Name</th>
+    <th>Surname</th>
+    <th>Phone</th>
+    <th>Email</th>
+    <th>Address</th>
+    <th>Action</th>
+  </tr>
+
+    {% for result in results %}
+    <tr>
+    <td>{{result.id}}</td>
+    <td>{{result.name}}</td>
+    <td>{{result.surname}}</td>
+    <td>{{result.phone_number}}</td>
+    <td>{{result.email}}</td>
+    <td>{{result.address}}</td>
+    <td>
+      <a class="btn btn-secondary" href="{% url 'edit-customer' result.id %}">Edit</a>
+      <a class="btn btn-danger" href="{% url 'delete-customer' result.id %}">Delete</a>
+    </td>
+  </tr>
+    {% endfor %}
+</table>
+{% else %}
+No search results for this query
+{% endif %}
+{% endif %}
+
+{%  endblock %}

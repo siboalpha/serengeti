@@ -6,7 +6,7 @@ from .models import Customers
 
 
 class Search(django_filters.FilterSet):
-    name = CharFilter(field_name=['name', 'id'], lookup_expr='icontains')
+    name = CharFilter(field_name='name', lookup_expr='icontains')
     id = CharFilter(field_name='id', lookup_expr='icontains')
     widgets = {
         'name': CharFilter(attrs={
