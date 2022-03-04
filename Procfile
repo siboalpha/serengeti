@@ -1,1 +1,1 @@
-web: gunicorn cms.wsgi --log-file -
+web: gunicorn serengeti.wsgi --log-file -
